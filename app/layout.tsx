@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Lễ tốt nghiệp Phạm Trung Hiếu",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "Thư Mời Tốt Nghiệp | Phạm Trung Hiếu",
     description:
       "Trân trọng kính mời tham dự lễ tốt nghiệp Bác sĩ Đa khoa của Phạm Trung Hiếu.",
-    images: ["/images/og-image.jpg"],
+    images: ["/images/og-image.png"],
   },
 
   icons: {
