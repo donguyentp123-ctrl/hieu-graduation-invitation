@@ -15,6 +15,7 @@ import TimelineSection from "@/components/Timeline/TimelineSection";
 import GallerySection from "@/components/Gallery/GallerySection";
 import GuideSection from "@/components/Guide/GuideSection";
 import RSVPSection from "@/components/RSVP/RSVPSection";
+import GuestbookSection from "@/components/Guestbook/GuestbookSection";
 import NotesSection from "@/components/Notes/NotesSection";
 import ThankYouSection from "@/components/ThankYou/ThankYouSection";
 export default function Home() {
@@ -33,7 +34,7 @@ export default function Home() {
 {showHero && (
   <SmoothScroll>
     <FloatingMedicalIcons />
-   
+    <LiveNotification />
     
     <RevealSection>
       <Hero />
@@ -59,8 +60,13 @@ export default function Home() {
       <GuideSection />
     </RevealSection>
 
+    
     <RevealSection>
       <RSVPSection />
+    </RevealSection>
+
+    <RevealSection>
+      <GuestbookSection />
     </RevealSection>
 
     <RevealSection>

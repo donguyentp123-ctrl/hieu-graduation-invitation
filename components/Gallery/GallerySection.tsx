@@ -1,12 +1,45 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ImageIcon } from "lucide-react";
+import { ImageIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
-const galleryItems = [1, 2, 3, 4, 5, 6];
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+
+import "yet-another-react-lightbox/styles.css";
+
+const slides = [
+  {
+    src: "/images/gallery/1.jpg",
+    title: "Khoảnh khắc 01",
+  },
+  {
+    src: "/images/gallery/2.jpg",
+    title: "Khoảnh khắc 02",
+  },
+  {
+    src: "/images/gallery/3.jpg",
+    title: "Khoảnh khắc 03",
+  },
+  {
+    src: "/images/gallery/4.jpg",
+    title: "Khoảnh khắc 04",
+  },
+  {
+    src: "/images/gallery/5.jpg",
+    title: "Khoảnh khắc 05",
+  },
+  {
+    src: "/images/gallery/6.jpg",
+    title: "Khoảnh khắc 06",
+  },
+];
 
 export default function GallerySection() {
+  const [index, setIndex] = useState(-1);
+
   return (
     <section className="relative overflow-hidden px-6 py-28">
       <Image
@@ -47,13 +80,15 @@ export default function GallerySection() {
         </motion.p>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {galleryItems.map((item, index) => (
-            <motion.div
-              key={item}
+          {slides.map((item, itemIndex) => (
+            <motion.button
+              type="button"
+              key={item.src}
+              onClick={() => setIndex(itemIndex)}
               initial={{ opacity: 0, y: 35, scale: 0.96 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: false, amount: 0.2 }}
-              transition={{ delay: index * 0.08 }}
+              transition={{ delay: itemIndex * 0.08 }}
               whileHover={{
                 y: -10,
                 scale: 1.03,
@@ -71,11 +106,12 @@ export default function GallerySection() {
                 border-[#D8C29A]/70
                 bg-white/65
                 p-3
+                text-left
                 shadow-[0_18px_55px_rgba(31,58,46,0.10)]
                 backdrop-blur-md
+                outline-none
               "
             >
-              {/* Gold leaf frame */}
               <div
                 className="
                   pointer-events-none
@@ -107,12 +143,12 @@ export default function GallerySection() {
                   opacity-0
                   transition-all
                   duration-500
-                  group-hover:opacity-100
                   group-hover:translate-x-4
                   group-hover:translate-y-4
-                  group-active:opacity-100
+                  group-hover:opacity-100
                   group-active:translate-x-4
                   group-active:translate-y-4
+                  group-active:opacity-100
                 "
               >
                 ❧
@@ -131,18 +167,17 @@ export default function GallerySection() {
                   opacity-0
                   transition-all
                   duration-500
-                  group-hover:opacity-100
                   group-hover:-translate-x-4
                   group-hover:-translate-y-4
-                  group-active:opacity-100
+                  group-hover:opacity-100
                   group-active:-translate-x-4
                   group-active:-translate-y-4
+                  group-active:opacity-100
                 "
               >
                 ❧
               </div>
 
-              {/* Inner photo placeholder */}
               <div
                 className="
                   relative
@@ -174,11 +209,13 @@ export default function GallerySection() {
                     size={42}
                   />
 
-                  <p className="text-sm">Ảnh sẽ được cập nhật sau</p>
+                  <p className="text-sm">{item.title}</p>
+                  <p className="mt-2 text-xs opacity-70">
+                    Ảnh sẽ được cập nhật sau
+                  </p>
                 </div>
               </div>
 
-              {/* Glow */}
               <div
                 className="
                   pointer-events-none
@@ -196,10 +233,42 @@ export default function GallerySection() {
                   group-active:opacity-100
                 "
               />
-            </motion.div>
+            </motion.button>
           ))}
         </div>
       </div>
+
+      <Lightbox
+        open={index >= 0}
+        close={() => setIndex(-1)}
+        index={index}
+        slides={slides.map((slide) => ({
+          src: slide.src,
+          title: slide.title,
+        }))}
+        plugins={[Zoom]}
+        carousel={{
+          finite: false,
+        }}
+        animation={{
+          fade: 450,
+          swipe: 500,
+        }}
+        render={{
+          iconClose: () => <X className="text-[#D8C29A]" />,
+          iconPrev: () => <ChevronLeft className="text-[#D8C29A]" />,
+          iconNext: () => <ChevronRight className="text-[#D8C29A]" />,
+        }}
+        styles={{
+          container: {
+            backgroundColor: "rgba(15, 36, 29, 0.88)",
+            backdropFilter: "blur(18px)",
+          },
+          slide: {
+            padding: "32px",
+          },
+        }}
+      />
     </section>
   );
 }

@@ -1,8 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Heart, MessageCircle } from "lucide-react";
+import { CheckCircle2, Heart, Loader2, MessageCircle } from "lucide-react";
 import { useState } from "react";
+
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxSImbZnR_7aCF3DYpRjt5nOZS2fgwVZaJESvOOuC1MVr4vZhRsiJcXFQsfMCIzdlCWvg/exec";
 
 type Toast = {
   name: string;
@@ -20,9 +23,13 @@ export default function RSVPSection() {
 
   const [toast, setToast] = useState<Toast | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const updateForm = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setForm({
       ...form,
@@ -30,24 +37,49 @@ export default function RSVPSection() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+    setIsSubmitting(true);
 
-    const displayName = form.name.trim() || "Một người bạn";
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
 
-    setToast({
-      name: displayName,
-      message:
-        form.status === "Không thể tham dự"
-          ? "đã gửi lời chúc đến Hiếu"
-          : "sẽ tham dự buổi lễ tốt nghiệp",
-    });
+      const displayName = form.name.trim() || "Một người bạn";
 
-    setSubmitted(true);
+      setToast({
+        name: displayName,
+        message:
+          form.status === "Không thể tham dự"
+            ? "đã gửi lời chúc đến Hiếu"
+            : "sẽ tham dự buổi lễ tốt nghiệp",
+      });
 
-    setTimeout(() => {
-      setToast(null);
-    }, 5200);
+      setSubmitted(true);
+
+      setForm({
+        name: "",
+        phone: "",
+        status: "Chắc chắn tham dự",
+        guests: "0",
+        message: "",
+      });
+
+      setTimeout(() => {
+        setToast(null);
+      }, 5200);
+    } catch {
+      setError("Có lỗi khi gửi xác nhận. Bạn vui lòng thử lại sau nhé.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -71,7 +103,8 @@ export default function RSVPSection() {
           </h2>
 
           <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#1F3A2E]/70">
-            Bạn vui lòng để lại thông tin để Hiếu có thể chuẩn bị và đón tiếp chu đáo hơn.
+            Bạn vui lòng để lại thông tin để Hiếu có thể chuẩn bị và đón tiếp
+            chu đáo hơn.
           </p>
         </motion.div>
 
@@ -103,7 +136,8 @@ export default function RSVPSection() {
                 </h3>
 
                 <p className="mt-5 text-sm leading-7 text-white/75">
-                  Sự hiện diện của bạn là một phần thật ý nghĩa trong dấu mốc tốt nghiệp của Hiếu.
+                  Sự hiện diện của bạn là một phần thật ý nghĩa trong dấu mốc
+                  tốt nghiệp của Hiếu.
                 </p>
               </div>
 
@@ -141,7 +175,8 @@ export default function RSVPSection() {
                   </h3>
 
                   <p className="mt-4 max-w-md text-sm leading-7 text-[#1F3A2E]/70">
-                    Hiếu đã nhận được phản hồi của bạn. Hẹn gặp bạn tại buổi lễ tốt nghiệp.
+                    Hiếu đã nhận được phản hồi của bạn. Hẹn gặp bạn tại buổi lễ
+                    tốt nghiệp.
                   </p>
 
                   <button
@@ -203,11 +238,20 @@ export default function RSVPSection() {
                     className="mt-5 w-full rounded-2xl border border-[#D8C29A]/60 bg-[#FAF7F2] px-5 py-4 outline-none focus:border-[#B48A4E]"
                   />
 
+                  {error && (
+                    <p className="mt-4 text-sm text-red-600">{error}</p>
+                  )}
+
                   <button
                     type="submit"
+                    disabled={isSubmitting}
                     className="
                       mt-6
+                      flex
                       w-full
+                      items-center
+                      justify-center
+                      gap-2
                       rounded-full
                       bg-[#1F3A2E]
                       px-8
@@ -218,9 +262,14 @@ export default function RSVPSection() {
                       transition-all
                       hover:-translate-y-1
                       hover:shadow-xl
+                      disabled:cursor-not-allowed
+                      disabled:opacity-70
                     "
                   >
-                    Gửi xác nhận
+                    {isSubmitting && (
+                      <Loader2 className="animate-spin" size={18} />
+                    )}
+                    {isSubmitting ? "Đang gửi..." : "Gửi xác nhận"}
                   </button>
                 </>
               )}
@@ -239,7 +288,7 @@ export default function RSVPSection() {
             className="
               fixed
               bottom-6
-              left-6
+              right-6
               z-50
               max-w-[340px]
               rounded-2xl
