@@ -1,6 +1,23 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Playfair_Display, Montserrat, Dancing_Script, } from "next/font/google";
+
+const headingFont = Playfair_Display({
+  subsets: ["latin", "vietnamese"],
+  variable: "--font-heading",
+});
+
+const bodyFont = Montserrat({
+  subsets: ["latin", "vietnamese"],
+  variable: "--font-body",
+});
+
+const signatureFont = Dancing_Script({
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-signature",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +44,15 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body
+  className={`${headingFont.variable} 
+              ${bodyFont.variable} 
+              ${signatureFont.variable}`}
+>
+  {children}
+</body>
     </html>
   );
 }
+
+
