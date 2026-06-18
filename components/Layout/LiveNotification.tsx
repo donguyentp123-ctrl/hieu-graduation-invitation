@@ -53,7 +53,7 @@ export default function LiveNotification() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-6 left-5 z-[80] hidden w-[340px] md:block">
+    <div className="fixed bottom-6 left-5 z-[80] hidden w-[340px] xl:block">
       <div className="mb-3 flex justify-end">
         <button
           type="button"

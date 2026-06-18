@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ImageIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -12,28 +12,28 @@ import "yet-another-react-lightbox/styles.css";
 
 const slides = [
   {
-    src: "/images/gallery/1.jpg",
-    title: "Khoảnh khắc 01",
+    src: "/images/1.jpg",
+    title: "Chân dung",
   },
   {
-    src: "/images/gallery/2.jpg",
-    title: "Khoảnh khắc 02",
+    src: "/images/2.jpg",
+    title: "Khoảnh khắc",
   },
   {
-    src: "/images/gallery/3.jpg",
-    title: "Khoảnh khắc 03",
+    src: "/images/3.jpg",
+    title: "Lễ phục",
   },
   {
-    src: "/images/gallery/4.jpg",
-    title: "Khoảnh khắc 04",
+    src: "/images/4.jpg",
+    title: "Đại học Y Dược",
   },
   {
-    src: "/images/gallery/5.jpg",
-    title: "Khoảnh khắc 05",
+    src: "/images/5.jpg",
+    title: "Hành trình",
   },
   {
-    src: "/images/gallery/6.jpg",
-    title: "Khoảnh khắc 06",
+    src: "/images/6.jpg",
+    title: "Tân Bác sĩ",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function GallerySection() {
           viewport={{ once: false, amount: 0.35 }}
           className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#1F3A2E]/70"
         >
-          Hiện tại phần ảnh sẽ được cập nhật sau. Đây là khu vực lưu giữ những khoảnh khắc đẹp trong ngày tốt nghiệp.
+          Một vài hình ảnh lưu giữ những khoảnh khắc đẹp trong hành trình tốt nghiệp.
         </motion.p>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -112,12 +112,13 @@ export default function GallerySection() {
                 outline-none
               "
             >
+              {/* Gold inner frame */}
               <div
                 className="
                   pointer-events-none
                   absolute
                   inset-2
-                  z-20
+                  z-30
                   rounded-[28px]
                   border
                   border-[#D8C29A]/40
@@ -131,13 +132,14 @@ export default function GallerySection() {
                 "
               />
 
+              {/* Gold ornaments */}
               <div
                 className="
                   pointer-events-none
                   absolute
                   -left-4
                   -top-4
-                  z-30
+                  z-40
                   text-5xl
                   text-[#C89B4D]
                   opacity-0
@@ -160,7 +162,7 @@ export default function GallerySection() {
                   absolute
                   -right-4
                   -bottom-4
-                  z-30
+                  z-40
                   rotate-180
                   text-5xl
                   text-[#C89B4D]
@@ -178,44 +180,71 @@ export default function GallerySection() {
                 ❧
               </div>
 
-              <div
-                className="
-                  relative
-                  z-10
-                  flex
-                  h-full
-                  items-center
-                  justify-center
-                  overflow-hidden
-                  rounded-[26px]
-                  bg-[#FAF7F2]/85
-                  transition
-                  duration-500
-                  group-hover:bg-white/90
-                  group-active:bg-white/90
-                "
-              >
-                <div className="text-center text-[#1F3A2E]/60">
-                  <ImageIcon
-                    className="
-                      mx-auto
-                      mb-4
-                      text-[#B48A4E]
-                      transition
-                      duration-500
-                      group-hover:scale-110
-                      group-active:scale-110
-                    "
-                    size={42}
-                  />
+              {/* Image */}
+              <div className="relative z-10 h-full overflow-hidden rounded-[26px]">
+                <Image
+                  src={item.src}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="
+                    object-cover
+                    transition-all
+                    duration-700
+                    group-hover:scale-110
+                    group-hover:rotate-1
+                    group-active:scale-110
+                  "
+                />
 
-                  <p className="text-sm">{item.title}</p>
-                  <p className="mt-2 text-xs opacity-70">
-                    Ảnh sẽ được cập nhật sau
+                {/* Overlay */}
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-black/60
+                    via-black/10
+                    to-transparent
+                    opacity-75
+                    transition-all
+                    duration-500
+                    group-hover:opacity-100
+                  "
+                />
+
+                {/* Shine */}
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-y-0
+                    -left-1/2
+                    w-1/2
+                    skew-x-[-18deg]
+                    bg-gradient-to-r
+                    from-transparent
+                    via-white/25
+                    to-transparent
+                    opacity-0
+                    transition-all
+                    duration-700
+                    group-hover:left-full
+                    group-hover:opacity-100
+                  "
+                />
+
+                {/* Caption */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                  <p className="heading-font text-2xl">{item.title}</p>
+
+                  <p className="mt-1 text-sm text-white/80">
+                    Lễ tốt nghiệp • 14.07.2026
                   </p>
                 </div>
               </div>
 
+              {/* Outer glow */}
               <div
                 className="
                   pointer-events-none

@@ -39,7 +39,7 @@ const stars = Array.from({ length: 40 }, (_, i) => ({
 
 export default function FloatingMedicalIcons() {
   return (
-    <div className="pointer-events-none fixed inset-0 z-10 hidden overflow-hidden md:block">
+    <div className="pointer-events-none fixed inset-0 z-10 hidden overflow-hidden xl:block">
       {stars.map((star) => (
         <motion.div
           key={`star-${star.id}`}
