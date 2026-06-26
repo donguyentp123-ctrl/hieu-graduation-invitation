@@ -13,7 +13,7 @@ const guideItems = [
   {
     icon: Clock,
     title: "Thời gian",
-    desc: "10:00 AM, ngày 14/07/2026",
+    desc: "10:00 AM, ngày 17/07/2026",
   },
   {
     icon: Car,
@@ -23,7 +23,7 @@ const guideItems = [
   {
     icon: Phone,
     title: "Liên hệ hỗ trợ",
-    desc: "Hiếu: 0706570270 · Phát: 0834697507",
+    desc: "Hiếu: 0706570270",
   },
 ];
 

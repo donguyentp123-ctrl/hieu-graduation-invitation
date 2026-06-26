@@ -214,7 +214,7 @@ export default function Hero() {
         >
           <div className="text-center md:text-right">
             <p className="text-base md:text-lg font-semibold">10:00 AM</p>
-            <p className="text-xs md:text-sm">14.07.2026</p>
+            <p className="text-xs md:text-sm">17.07.2026</p>
           </div>
 
           <div className="hidden h-11 w-px bg-[#B48A4E]/45 md:block" />

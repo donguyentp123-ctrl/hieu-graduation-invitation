@@ -68,7 +68,7 @@ export default function ThankYouSection() {
             metallic-gold-text
           "
         >
-          Cảm ơn bạn
+          Xin cảm ơn
         </motion.h2>
 
         <motion.div
@@ -98,7 +98,7 @@ export default function ThankYouSection() {
             text-white/90
           "
         >
-          Cảm ơn bạn đã dành thời gian ghé thăm và đồng hành cùng Hiếu
+          Cảm ơn mọi người đã dành thời gian ghé thăm và đồng hành cùng Hiếu
           trong dấu mốc đặc biệt này.
         </motion.p>
 
@@ -116,7 +116,7 @@ export default function ThankYouSection() {
             text-white/80
           "
         >
-          Sự hiện diện, lời chúc và tình cảm của bạn sẽ là một phần
+          Sự hiện diện, lời chúc và tình cảm của mọi người sẽ là một phần
           thật đẹp trong hành trình trưởng thành của Hiếu.
         </motion.p>
 
@@ -150,7 +150,7 @@ export default function ThankYouSection() {
           </h3>
 
           <p className="mt-3 text-white/75">
-            14.07.2026 • Khoa Y • Đại học Y Dược Cần Thơ
+            17.07.2026 • Khoa Y • Đại học Y Dược Cần Thơ
           </p>
         </motion.div>
       </div>

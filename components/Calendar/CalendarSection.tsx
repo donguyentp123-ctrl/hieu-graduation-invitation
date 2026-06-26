@@ -67,7 +67,7 @@ export default function CalendarSection() {
               <div />
 
               {days.map((day) => {
-                const isEventDay = day === 14;
+                const isEventDay = day === 17;
 
                 return (
                   <motion.div
@@ -199,8 +199,8 @@ export default function CalendarSection() {
               <div className="flex gap-4">
                 <CalendarDays className="shrink-0 text-[#B48A4E]" />
                 <div>
-                  <p className="font-semibold">14/07/2026</p>
-                  <p className="text-sm opacity-75">Thứ Ba</p>
+                  <p className="font-semibold">17/07/2026</p>
+                  <p className="text-sm opacity-75">Thứ Sáu</p>
                 </div>
               </div>
 

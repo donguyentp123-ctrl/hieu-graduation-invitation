@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const targetDate = new Date("2026-07-14T10:00:00+07:00").getTime();
+const targetDate = new Date("2026-07-17T10:00:00+07:00").getTime();
 
 function getTimeLeft() {
   const now = new Date().getTime();

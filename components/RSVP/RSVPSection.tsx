@@ -83,7 +83,7 @@ export default function RSVPSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#F6F0E7] px-6 py-24">
+    <section id="rsvp" className="relative overflow-hidden bg-[#F6F0E7] px-6 py-24">
       <div className="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#D8C29A]/20 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-5xl">
@@ -103,7 +103,7 @@ export default function RSVPSection() {
           </h2>
 
           <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#1F3A2E]/70">
-            Bạn vui lòng để lại thông tin để Hiếu có thể chuẩn bị và đón tiếp
+            Vui lòng để lại thông tin để Hiếu có thể chuẩn bị và đón tiếp
             chu đáo hơn.
           </p>
         </motion.div>
@@ -132,11 +132,11 @@ export default function RSVPSection() {
                 </p>
 
                 <h3 className="heading-font mt-5 text-4xl">
-                  Hẹn gặp bạn trong ngày đặc biệt
+                  Hẹn gặp mọi người trong ngày đặc biệt
                 </h3>
 
                 <p className="mt-5 text-sm leading-7 text-white/75">
-                  Sự hiện diện của bạn là một phần thật ý nghĩa trong dấu mốc
+                  Sự hiện diện của mọi người là một phần thật ý nghĩa trong dấu mốc
                   tốt nghiệp của Hiếu.
                 </p>
               </div>
@@ -171,11 +171,11 @@ export default function RSVPSection() {
                   </div>
 
                   <h3 className="heading-font mt-6 text-4xl text-[#1F3A2E]">
-                    Cảm ơn bạn!
+                    Cảm ơn!
                   </h3>
 
                   <p className="mt-4 max-w-md text-sm leading-7 text-[#1F3A2E]/70">
-                    Hiếu đã nhận được phản hồi của bạn. Hẹn gặp bạn tại buổi lễ
+                    Hiếu đã nhận được phản hồi. Hẹn gặp tại buổi lễ
                     tốt nghiệp.
                   </p>
 

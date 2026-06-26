@@ -20,15 +20,15 @@ const slides = [
     title: "Khoảnh khắc",
   },
   {
-    src: "/images/3.jpg",
+    src: "/images/3.png",
     title: "Lễ phục",
   },
   {
-    src: "/images/4.jpg",
+    src: "/images/4.png",
     title: "Đại học Y Dược",
   },
   {
-    src: "/images/5.jpg",
+    src: "/images/5.png",
     title: "Hành trình",
   },
   {
@@ -239,7 +239,7 @@ export default function GallerySection() {
                   <p className="heading-font text-2xl">{item.title}</p>
 
                   <p className="mt-1 text-sm text-white/80">
-                    Lễ tốt nghiệp • 14.07.2026
+                    Lễ tốt nghiệp • 17.07.2026
                   </p>
                 </div>
               </div>

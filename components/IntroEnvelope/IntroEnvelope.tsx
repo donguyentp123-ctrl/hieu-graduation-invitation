@@ -81,7 +81,7 @@ export default function IntroEnvelope({ onOpen }: Props) {
               </h2>
 
               <p className="mt-8 text-gray-500">
-                14 Tháng 07, 2026 • 10:00 AM
+                17 Tháng 07, 2026 • 10:00 AM
               </p>
 
               <button

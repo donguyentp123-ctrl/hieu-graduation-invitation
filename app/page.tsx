@@ -1,83 +1,122 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-import Hero from "@/components/Hero/Hero";
-import RevealSection from "@/components/Layout/RevealSection";
-import SmoothScroll from "@/components/Layout/SmoothScroll";
-import FloatingMedicalIcons from "@/components/Layout/FloatingMedicalIcons";
-import LuxuryCursor from "@/components/Layout/LuxuryCursor";
-import LiveNotification from "@/components/Layout/LiveNotification";
-import IntroEnvelope from "@/components/IntroEnvelope/IntroEnvelope";
 import CalendarSection from "@/components/Calendar/CalendarSection";
 import CountdownSection from "@/components/Countdown/CountdownSection";
-import TimelineSection from "@/components/Timeline/TimelineSection";
 import GallerySection from "@/components/Gallery/GallerySection";
-import GuideSection from "@/components/Guide/GuideSection";
-import RSVPSection from "@/components/RSVP/RSVPSection";
 import GuestbookSection from "@/components/Guestbook/GuestbookSection";
+import GuideSection from "@/components/Guide/GuideSection";
+import Hero from "@/components/Hero/Hero";
+import IntroEnvelope from "@/components/IntroEnvelope/IntroEnvelope";
+import FloatingMedicalIcons from "@/components/Layout/FloatingMedicalIcons";
+import RevealSection from "@/components/Layout/RevealSection";
+import SmoothScroll from "@/components/Layout/SmoothScroll";
 import NotesSection from "@/components/Notes/NotesSection";
+import PartyInvitationSection from "@/components/Party/PartyInvitationSection";
+import PartySurprise from "@/components/Party/PartySurprise";
+import RSVPSection from "@/components/RSVP/RSVPSection";
 import ThankYouSection from "@/components/ThankYou/ThankYouSection";
-export default function Home() {
-  const [showEnvelope, setShowEnvelope] = useState(true);
-  const [showHero, setShowHero] = useState(false);
+import TimelineSection from "@/components/Timeline/TimelineSection";
 
-  const handleOpenComplete = () => {
+export default function Home() {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const [showEnvelope, setShowEnvelope] = useState(true);
+  const [showWebsite, setShowWebsite] = useState(false);
+  const [showAfterParty, setShowAfterParty] = useState(false);
+
+  const handleOpenComplete = async () => {
     setShowEnvelope(false);
-    setShowHero(true);
+    setShowWebsite(true);
+
+    try {
+      if (audioRef.current) {
+        audioRef.current.volume = 0.35;
+        audioRef.current.loop = true;
+        await audioRef.current.play();
+      }
+    } catch {
+      // Nếu trình duyệt chặn, website vẫn mở bình thường
+    }
   };
+
+  const handleOpenPartyInvitation = () => {
+  window.scrollTo({
+    top: window.scrollY,
+    behavior: "auto",
+  });
+
+  setTimeout(() => {
+    setShowAfterParty(true);
+  }, 300);
+};
 
   return (
     <main className="bg-[#FAF7F2]">
+      <audio ref={audioRef} src="/audio/background.mp3" preload="auto" />
+
       {showEnvelope && <IntroEnvelope onOpen={handleOpenComplete} />}
 
-{showHero && (
-  <SmoothScroll>
-    <FloatingMedicalIcons />
-    <LiveNotification />
-    
-    <RevealSection>
-      <Hero />
-    </RevealSection>
+      {showWebsite && (
+        <SmoothScroll refreshKey={showAfterParty}>
+          <FloatingMedicalIcons />
 
-    <RevealSection>
-      <CalendarSection />
-    </RevealSection>
+          <RevealSection>
+            <Hero />
+          </RevealSection>
 
-    <RevealSection>
-      <CountdownSection />
-    </RevealSection>
+          <RevealSection>
+            <CalendarSection />
+          </RevealSection>
 
-    <RevealSection>
-      <TimelineSection />
-    </RevealSection>
+          <RevealSection>
+            <CountdownSection />
+          </RevealSection>
 
-    <RevealSection>
-      <GallerySection />
-    </RevealSection>
+          <RevealSection>
+            <TimelineSection />
+          </RevealSection>
 
-    <RevealSection>
-      <GuideSection />
-    </RevealSection>
+          <RevealSection>
+            <GallerySection />
+          </RevealSection>
 
-    
-    <RevealSection>
-      <RSVPSection />
-    </RevealSection>
+          <RevealSection>
+            <GuideSection />
+          </RevealSection>
 
-    <RevealSection>
-      <GuestbookSection />
-    </RevealSection>
+          {!showAfterParty && (
+            <RevealSection>
+              <PartySurprise onOpen={handleOpenPartyInvitation} />
+            </RevealSection>
+          )}
 
-    <RevealSection>
-      <NotesSection />
-    </RevealSection>
+          {showAfterParty && (
+            <>
+              <RevealSection>
+                <PartyInvitationSection />
+              </RevealSection>
 
-    <RevealSection>
-      <ThankYouSection />
-    </RevealSection>
-  </SmoothScroll>
-)}
+              <RevealSection>
+                <RSVPSection />
+              </RevealSection>
+
+              <RevealSection>
+                <GuestbookSection />
+              </RevealSection>
+
+              <RevealSection>
+                <NotesSection />
+              </RevealSection>
+
+              <RevealSection>
+                <ThankYouSection />
+              </RevealSection>
+            </>
+          )}
+        </SmoothScroll>
+      )}
     </main>
   );
 }

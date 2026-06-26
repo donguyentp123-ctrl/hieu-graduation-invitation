@@ -5,10 +5,10 @@ import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 
 const notes = [
-  "Vui lòng đến trước giờ bắt đầu khoảng 15 - 20 phút để thuận tiện ổn định chỗ ngồi.",
-  "Trang phục lịch sự, gọn gàng để thuận tiện tham dự và chụp ảnh lưu niệm.",
-  "Hạn chế mang theo đồ có giá trị cao để tránh thất lạc trong quá trình di chuyển.",
-  "Nếu chưa tìm được địa điểm hoặc cần hỗ trợ, vui lòng liên hệ Hiếu hoặc Phát.",
+  "Đừng quên dành thời gian ở lại sau buổi lễ để cùng Hiếu lưu giữ những khoảnh khắc đáng nhớ.",
+  "Hãy tự tin khoác lên mình bộ trang phục yêu thích nhất để cùng Hiếu lưu giữ những khoảnh khắc đẹp và đáng nhớ trong ngày đặc biệt này.",
+  "Để thuận tiện di chuyển và tham gia các hoạt động, mọi người vui lòng hạn chế mang theo tài sản có giá trị cao.",
+  "Nếu cần hỗ trợ hoặc chưa tìm được vị trí, đừng ngần ngại liên hệ với Hiếu.",
 ];
 
 export default function NotesSection() {
