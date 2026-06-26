@@ -15,7 +15,15 @@ export default function CalendarSection() {
         fill
         className="pointer-events-none object-cover opacity-70"
       />
-
+      <Image
+        src="/images/calendar-bg-mobile.png"
+        alt=""
+        fill
+        className="
+          object-cover
+          md:hidden
+        "
+      />
       <div className="absolute inset-0 bg-white/45" />
 
       <div className="relative z-10 mx-auto max-w-6xl">

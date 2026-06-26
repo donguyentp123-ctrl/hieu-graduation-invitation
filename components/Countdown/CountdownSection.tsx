@@ -102,7 +102,15 @@ export default function CountdownSection() {
         fill
         className="object-cover opacity-75"
       />
-
+      <Image
+        src="/images/countdown-bg-mobile.png"
+        alt=""
+        fill
+        className="
+          object-cover
+          md:hidden
+        "
+      />
       <div className="absolute inset-0 bg-[#FAF7F2]/45" />
 
       {/* Gold glow */}

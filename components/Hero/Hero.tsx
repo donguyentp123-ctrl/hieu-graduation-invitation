@@ -54,7 +54,16 @@ export default function Hero() {
         priority
         className="object-cover object-center"
       />
-
+      <Image
+        src="/images/ctump-bg-mobile.png"
+        alt=""
+        fill
+        priority
+        className="
+          object-cover
+          md:hidden
+        "
+      />
       <div className="absolute inset-0 bg-white/10" />
 
       <Sparkles />

@@ -21,7 +21,15 @@ export default function NotesSection() {
         fill
         className="object-cover"
       />
-
+      <Image
+        src="/images/note-bg-mobile.png"
+        alt=""
+        fill
+        className="
+          object-cover
+          md:hidden
+        "
+      />
       <div className="absolute inset-0 bg-white/35" />
 
       <div className="relative z-10 mx-auto max-w-6xl">

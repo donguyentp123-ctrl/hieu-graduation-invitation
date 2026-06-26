@@ -10,12 +10,16 @@ export default function ThankYouSection() {
         overflow-hidden
         py-32
         px-6
+        bg-cover
+        bg-center
+        md:bg-[url('/images/thankyou-bg.png')]
+        bg-[url('/images/thankyou-bg-mobile.png')]
       "
-      style={{
+     /* style={{
         backgroundImage: "url('/images/thankyou-bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-      }}
+      }}*/
     >
       {/* overlay tối nhẹ */}
       <div className="absolute inset-0 bg-[#0F241D]/40" />

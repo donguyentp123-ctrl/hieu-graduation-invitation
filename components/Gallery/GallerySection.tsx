@@ -48,7 +48,15 @@ export default function GallerySection() {
         fill
         className="pointer-events-none object-cover opacity-90"
       />
-
+      <Image
+        src="/images/gallery-bg-mobile.png"
+        alt=""
+        fill
+        className="
+          object-cover
+          md:hidden
+        "
+      />
       <div className="absolute inset-0 bg-white/25" />
 
       <div className="relative z-10 mx-auto max-w-6xl text-center">
