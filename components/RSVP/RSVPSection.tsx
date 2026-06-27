@@ -16,7 +16,7 @@ export default function RSVPSection() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
-    status: "Chắc chắn tham dự",
+    status: "Tham gia tiệc tốt nghiệp ở Cần Thơ",
     guests: "0",
     message: "",
   });
@@ -57,9 +57,13 @@ export default function RSVPSection() {
       setToast({
         name: displayName,
         message:
-          form.status === "Không thể tham dự"
-            ? "đã gửi lời chúc đến Hiếu"
-            : "sẽ tham dự buổi lễ tốt nghiệp",
+  form.status === "Không thể tham dự"
+    ? "đã gửi lời chúc đến Hiếu"
+    : form.status === "Tham gia cả hai"
+    ? "sẽ tham gia cả tiệc tốt nghiệp và tiệc thân mật"
+    : form.status === "Tham gia tiệc thân mật ở quê"
+    ? "sẽ tham gia tiệc thân mật ở quê"
+    : "sẽ tham gia tiệc tốt nghiệp ở Cần Thơ",
       });
 
       setSubmitted(true);
@@ -67,7 +71,7 @@ export default function RSVPSection() {
       setForm({
         name: "",
         phone: "",
-        status: "Chắc chắn tham dự",
+        status: "Tham gia tiệc tốt nghiệp ở Cần Thơ",
         guests: "0",
         message: "",
       });
@@ -103,8 +107,8 @@ export default function RSVPSection() {
           </h2>
 
           <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#1F3A2E]/70">
-            Vui lòng để lại thông tin để Hiếu có thể chuẩn bị và đón tiếp
-            chu đáo hơn.
+            Vui lòng để lại thông tin để Hiếu và gia đình có thể chuẩn bị, đón tiếp
+chu đáo hơn.
           </p>
         </motion.div>
 
@@ -144,8 +148,7 @@ export default function RSVPSection() {
               <div className="mt-10 space-y-4 text-sm text-white/80">
                 <div className="flex items-center gap-3">
                   <CheckCircle2 className="text-[#D8C29A]" size={18} />
-                  Không giới hạn thời gian xác nhận
-                </div>
+Có thể xác nhận tham dự theo từng buổi                </div>
 
                 <div className="flex items-center gap-3">
                   <Heart className="text-[#D8C29A]" size={18} />
@@ -213,8 +216,9 @@ export default function RSVPSection() {
                       onChange={updateForm}
                       className="rounded-2xl border border-[#D8C29A]/60 bg-[#FAF7F2] px-5 py-4 outline-none focus:border-[#B48A4E]"
                     >
-                      <option>Chắc chắn tham dự</option>
-                      <option>Có thể tham dự</option>
+                      <option>Tham gia tiệc tốt nghiệp ở Cần Thơ</option>
+                      <option>Tham gia tiệc thân mật ở quê</option>
+                      <option>Tham gia cả hai</option>
                       <option>Không thể tham dự</option>
                     </select>
 
